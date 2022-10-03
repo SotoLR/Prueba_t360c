@@ -14,4 +14,4 @@ Si tiene autorización para usar esta aplicación, se le debe haber hecho llegar
 
 > flask --app server run
 
-Correrá en localhost:3000
+Correrá en http://localhost:3000

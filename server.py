@@ -57,31 +57,7 @@ def logout():
 
 @app.route("/")
 def home():
-	"""
-	if len(stays) > 0:
-		return render_template("home.html", session=session.get('user'), stays=stays)
-	else:
-		return render_template("home.html", session=session.get('user'))
-	"""
 	return render_template("home.html", session=session.get('user'), stays=stays)
-
-@app.route("/test")
-def test():
-	data = [
-		{
-			"title": "A",
-			"location": "Mexico City"
-		},
-		{
-			"title": "B",
-			"location": "Paris"
-		},
-		{
-			"title": "C",
-			"location": "Tokyo"
-		}
-	]
-	return render_template("test.html", table=data)
 
 @app.post("/addStay")
 def addStay():
@@ -116,10 +92,6 @@ def deleteStay():
 			del stays[i]
 			break
 	return redirect(url_for("home"))
-
-@app.get("/gettest")
-def gettest():
-	return request.args.get("hello")
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", port=env.get("PORT", 3000))
