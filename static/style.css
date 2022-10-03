@@ -1,0 +1,82 @@
+* {
+	font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+body{
+	margin: 0;
+	line-height:1.6;
+	font-size:18px;
+	color:#444;
+	padding:0 10px
+}
+h1,h2,h3{
+	line-height:1.2
+}
+table{
+	margin: 20px auto;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+td,th{
+	padding: 3px 3px;
+	border: 1px solid black;
+}
+#registerform{
+	width: 90%;
+	margin: 20px auto;
+	padding: 10px;
+	border-style: solid;
+	border-color: gray;
+	border-width: 2px;
+	border-radius: 5px;
+	/*text-align: center;*/
+	/*display: flex;
+	flex-flow: row warp;
+	justify-content: center;*/
+}
+#registerform input [type=submit]{
+	font-size: 18px;
+}
+#maindiv{
+	max-width: 650px;
+	margin: 10px auto;
+}
+.navbar {
+	text-align: left;
+	margin: 0;
+	padding: 0;
+	color: white;
+	background-color: #3aa832;
+}
+.navbar a{
+	color: #fff;
+}
+.navbar li{
+	display: inline-block;
+	margin: 0px 10px 0px 10px;
+	cursor: pointer;
+}
+.hidden {
+	display: none !important;
+}
+.fake-button{
+	color: #7984db;
+	background-color: #fff;
+	border-style: none;
+	border-color: #7984db;
+	border-radius: 2px;
+	cursor: pointer;
+}
+.fake-button:hover{
+	background-color: #babed6;
+}
+.delete-button{
+	color: #e61e24;
+	background-color: #fff;
+	border-style: none;
+	border-color: #e61e24;
+	border-radius: 2px;
+	cursor: pointer;
+}
+.delete-button:hover{
+	background-color: #de999b;
+}

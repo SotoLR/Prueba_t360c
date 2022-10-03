@@ -3,39 +3,83 @@
 	<head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Auth0 Example</title>
-		<style type="text/css">
-			body{
-				margin:40px auto;
-				max-width:650px;
-				line-height:1.6;
-				font-size:18px;
-				color:#444;
-				padding:0 10px
-			}
-			h1,h2,h3{
-				line-height:1.2
-			}
-		</style>
+		<title>Prueba RSL</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 	</head>
 	<body>
+		<ul class="navbar">
+			<li><h3>Mini AirBnB</h3></li>
+			{% if session %}
+			<li>Welcome, {{ session.userinfo.name }}</li>
+			<li><a href="/logout">Logout</a></li>
+			{% else %}
+			<li><a href="/login">Login</a></li>
+			{% endif %}
+		</ul>
+	<div id="maindiv">
+
 	{% if session %}
-		<h1>Welcome {{session.userinfo.name}}!</h1>
-		<p><a href="/logout">Logout</a></p>
-		<div><pre>{{pretty}}</pre></div>
-	{% else %}
-		<h1>Welcome Guest</h1>
-		<p><a href="/login">Login</a></p>
+	<form id="registerform" action="/addStay" method="post">
+		<div class="field">
+			<label for="StayTitle">Stay Title</label><br>
+			<input type="text" name="title" id="StayTitle">
+		</div>
+		<div class="field">
+			<label for="StayLocation">Stay Location</label><br>
+			<input type="text" name="location" id="StayLocation">
+		</div>
+		<div class="field hidden">
+			<input type="text" name="usernickname" value="{{session.userinfo.nickname}}">
+		</div>
+		<div class="field hidden">
+			<input type="text" name="useremail" value="{{session.userinfo.email}}">
+		</div>
+		<input type="submit" value="Register" name="submit">
+	</form>
 	{% endif %}
+
+	{% if stays|length > 0 %}
+	<table>
+		<thead>
+			<tr>
+				<th>Stay title</th>
+				<th>Stay location</th>
+				<th>Stay owner</th>
+				<th>Stay status</th>
+				{% if session %}
+				<th colspan="2">Action</th>
+				{% endif %}
+				<!-- <th></th> -->
+			</tr>
+		</thead>
+		<tbody>
+			{% for stay in stays %}
+			<tr>
+				<td>{{ stay.title }}</td>
+				<td>{{ stay.location }}</td>
+				<td>{{ stay.owner.nickname }}</td>
+				<td>{{ stay.status }}</td>
+				{% if session %}
+				<td>
+					{% if stay.guest %}
+					Reserved by {{ stay.guest.name }}
+					{% else %}
+					<a class="fake-button" href="/reserveStay?title={{stay.title}}&guestname={{session.userinfo.nickname}}&guestemail={{session.userinfo.email}}">Reserve</a>
+					{% endif %}
+					<nbsp>
+					{% if session.userinfo.nickname == stay.owner.nickname %}
+					<a class="delete-button" href="/deleteStay?title={{stay.title}}&username={{session.userinfo.email}}">Delete</a>
+					{% endif %}
+				</td>
+				{% endif %}
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% else %}
+	<h4>No stays registered yet...</h4>
+	{% endif %}
+
+	</div>
 	</body>
-</html>
-
-<html>
-<head>
-	<meta charset="utf-8" />
-	<title>Auth0 Example</title>
-</head>
-<body>
-
-</body>
 </html>
