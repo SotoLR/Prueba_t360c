@@ -28,12 +28,14 @@
 			<label for="StayLocation">Stay Location</label><br>
 			<input type="text" name="location" id="StayLocation">
 		</div>
+	<!--
 		<div class="field hidden">
 			<input type="text" name="usernickname" value="{{session.userinfo.nickname}}">
 		</div>
 		<div class="field hidden">
 			<input type="text" name="useremail" value="{{session.userinfo.email}}">
 		</div>
+	-->
 		<input type="submit" value="Register" name="submit">
 	</form>
 	{% endif %}
@@ -64,11 +66,11 @@
 					{% if stay.guest %}
 					Reserved by {{ stay.guest.name }}
 					{% else %}
-					<a class="fake-button" href="/reserveStay?title={{stay.title}}&guestname={{session.userinfo.nickname}}&guestemail={{session.userinfo.email}}">Reserve</a>
+					<a class="fake-button" href="/reserveStay?title={{stay.title}}">Reserve</a>
 					{% endif %}
 					<nbsp>
 					{% if session.userinfo.nickname == stay.owner.nickname %}
-					<a class="delete-button" href="/deleteStay?title={{stay.title}}&username={{session.userinfo.email}}">Delete</a>
+					<a class="delete-button" href="/deleteStay?title={{stay.title}}">Delete</a>
 					{% endif %}
 				</td>
 				{% endif %}

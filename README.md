@@ -10,11 +10,6 @@ Ya que ingresó, el usuario puede registrar una estancia usando el formato. Ést
 
 También puede reservar estancias disponibles y borrar sus propias estancias.
 
-**Le faltan dos detalles para estar terminada:**
-
-* Una verificación de autorización en el backend al momento de solicitar el borrado de una estancia
-* Creación de usuarios administradores, que pueden borrar estancias que no les pertenecen.
-
 ## Instalación e inicio
 
 ### Instalar requerimientos de python con el siguiente comando

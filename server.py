@@ -66,8 +66,8 @@ def addStay():
 		"location": request.form.get("location"),
 		"status": "Available",
 		"owner": {
-			"email": request.form.get("useremail"),
-			"nickname": request.form.get("usernickname")
+			"email": session.get("user")["userinfo"]["email"],
+			"nickname": session.get("user")["userinfo"]["nickname"]
 		}
 	}
 	stays.append(obj)
@@ -76,10 +76,11 @@ def addStay():
 @app.get("/reserveStay")
 def reserveStay():
 	for i in range(len(stays)):
-		if stays[i]["title"] == request.args.get("title"):
+		# Make sure stay is available before reserving
+		if stays[i]["title"] == request.args.get("title") && stays[i]["status"] == "Available":
 			stays[i]["guest"] = {
-				"name": request.args.get("guestname"),
-				"email": request.args.get("guestemail")
+				"name": session.get("user")["userinfo"]["nickname"],
+				"email": session.get("user")["userinfo"]["email"]
 			}	
 			stays[i]["status"] = "Unavailable"
 			break
@@ -88,7 +89,8 @@ def reserveStay():
 @app.get("/deleteStay")
 def deleteStay():
 	for i in range(len(stays)):
-		if stays[i]["title"] == request.args.get("title"):
+		#make sure that the requester is also the owner of the stay
+		if stays[i]["title"] == request.args.get("title") and session.get("user")["userinfo"]["email"] == stays[i]["owner"]["email"]:
 			del stays[i]
 			break
 	return redirect(url_for("home"))
