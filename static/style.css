@@ -6,10 +6,13 @@ body{
 	line-height:1.6;
 	font-size:18px;
 	color:#444;
-	background-color:#e3e3e3
+	/*background-color:#e3e3e3;*/
 }
 h1,h2,h3{
 	line-height:1.2
+}
+h4{
+	text-align: center;
 }
 table{
 	margin: 20px auto;

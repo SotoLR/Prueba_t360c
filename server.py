@@ -77,7 +77,7 @@ def addStay():
 def reserveStay():
 	for i in range(len(stays)):
 		# Make sure stay is available before reserving
-		if stays[i]["title"] == request.args.get("title") && stays[i]["status"] == "Available":
+		if stays[i]["title"] == request.args.get("title") and stays[i]["status"] == "Available":
 			stays[i]["guest"] = {
 				"name": session.get("user")["userinfo"]["nickname"],
 				"email": session.get("user")["userinfo"]["email"]
